@@ -1,0 +1,432 @@
+:root {
+    --primary-color: #028a99;
+    --sidebar-width: 250px;
+}
+ body { background-color: #f8f9fa; }
+/* ========== Base Layout ========== */
+
+.dashboard-container {
+    display: flex;
+    min-height: 100vh;
+    background: #f8f9fa;
+}
+
+/* ========== Sidebar (Desktop) ========== */
+
+.sidebar {
+    width: var(--sidebar-width);
+    background: var(--primary-color);
+    color: #fff;
+    padding: 1rem;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    flex-shrink: 0;
+}
+
+.sidebar h4 {
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+.sidebar-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-menu li {
+    margin-bottom: 0.5rem;
+}
+
+.sidebar-menu a {
+    color: #fff;
+    text-decoration: none;
+    padding: 0.6rem 0.75rem;
+    display: block;
+    border-radius: 6px;
+    transition: background 0.3s;
+}
+
+.sidebar-menu a:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.sidebar-menu i {
+    margin-right: 0.6rem;
+}
+
+/* ========== Main Content (Desktop) ========== */
+
+.main-content {
+    flex: 1;
+    padding: 2rem;
+}
+
+/* ========== Hamburger (Hidden on Desktop) ========== */
+
+.hamburger {
+    display: none;
+    cursor: pointer;
+}
+
+/* ========== Mobile Styles ========== */
+
+@media (max-width: 768px) {
+
+    /* Stop flex layout on mobile */
+    .dashboard-container {
+        display: block;
+    }
+
+    /* Sidebar becomes overlay */
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: var(--sidebar-width);
+        height: 100vh;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        z-index: 1000;
+    }
+
+    .sidebar.active {
+        transform: translateX(0);
+    }
+
+    /* Main content full width */
+    .main-content {
+        width: 100%;
+        margin: 0;
+        padding: 1.5rem;
+        margin-top: 60px; /* space for hamburger */
+    }
+
+    /* Hamburger visible */
+    .hamburger {
+        display: block;
+        position: fixed;
+        top: 1rem;
+        right: 1rem;
+        z-index: 1100;
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+    .back{
+        display: none;
+    }
+}
+
+
+
+
+
+
+.stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1.25rem;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #028a99;
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-label {
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+
+        .filter-tabs {
+            background: white;
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.6rem 1.5rem;
+            border: 2px solid #dee2e6;
+            background: white;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+            color: #6c757d;
+        }
+
+        .filter-btn:hover {
+            border-color: #028a99;
+            color: #028a99;
+        }
+
+        .filter-btn.active {
+            background: linear-gradient(135deg, #028a99 0%, #02a8b9 100%);
+            color: white;
+            border-color: #028a99;
+        }
+
+        .trips-table-container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+
+        .trips-table {
+            margin: 0;
+            width: 100%;
+        }
+
+        .trips-table thead {
+            background: linear-gradient(135deg, #028a99 0%, #02a8b9 100%);
+            color: white;
+        }
+
+        .trips-table th {
+            padding: 1rem;
+            font-weight: 600;
+            border: none;
+            white-space: nowrap;
+        }
+
+        .trips-table td {
+            padding: 1rem;
+            vertical-align: middle;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .trips-table tbody tr:hover {
+            background-color: #f8f9fa;
+        }
+
+        .trips-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .badge-custom {
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .badge-approved {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .badge-pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .badge-cancelled {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .badge-upcoming {
+            background: #cfe2ff;
+            color: #084298;
+        }
+
+        .badge-ongoing {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+
+        .badge-completed {
+            background: #d4edda;
+            color: #155724;
+        }
+        .badge-deleted {
+            background: #e2e3e5;
+            color: #383d41;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .empty-state i {
+            font-size: 4rem;
+            color: #dee2e6;
+            margin-bottom: 1rem;
+        }
+
+        .search-container {
+            margin-bottom: 1.5rem;
+        }
+
+        .search-input {
+            padding: 0.75rem;
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 400px;
+            
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #028a99;
+            box-shadow: 0 0 0 0.2rem rgba(2, 138, 153, 0.25);
+        }
+
+        .trip-route {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .location {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .route-arrow {
+            color: #028a99;
+            font-size: 1.2rem;
+        }
+
+        .driver-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .driver-name {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .driver-contact {
+            font-size: 0.85rem;
+            color: #6c757d;
+        }
+
+        .trip-datetime {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .trip-date {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .trip-time {
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-action {
+            padding: 0.4rem 0.8rem;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .btn-approve {
+            background: #28a745;
+            color: white;
+        }
+
+        .btn-approve:hover {
+            background: #218838;
+            transform: translateY(-2px);
+        }
+
+        .btn-cancel {
+            background: #dc3545;
+            color: white;
+        }
+
+        .btn-cancel:hover {
+            background: #c82333;
+            transform: translateY(-2px);
+        }
+
+        .btn-view-reservations {
+            background: #17a2b8;
+            color: white;
+        }
+
+        .btn-view-reservations:hover {
+            background: #138496;
+            transform: translateY(-2px);
+        }
+
+        .seats-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .seats-available {
+            font-weight: 600;
+            color: #28a745;
+        }
+
+        .seats-total {
+            font-size: 0.85rem;
+            color: #6c757d;
+        }
+
+        .price-tag {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #028a99;
+        }
+
+        .reservations-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+            font-size: 0.9rem;
+        }
+
+        .reservation-count {
+            font-weight: 600;
+            color: #333;
+        }
